@@ -1,3 +1,8 @@
+/**
+ * Some helper methods for authentication.
+ * has...Access methods check if the token in the request are valid.
+ */
+
 var information = ThingStatus.findOne({});
 var tokens = information.device.tokens;
 
@@ -21,7 +26,11 @@ hasOwnerAccess = function(request) {
     return information.device.registered === true && request.headers.accesstoken === tokens.owner_token;
 };
 
+/**
+ * Returns a not authentication response with status code 401 (Unauthorized)
+ * @param response
+ */
 createNotAuthed = function(response) {
-    response.statusCode = 500;
+    response.statusCode = 401;
     response.end("error: not authorized");
 };

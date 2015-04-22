@@ -1,3 +1,8 @@
+/**
+ * Checks the database at server startup.
+ * If the database is empty, initially insert some default information.
+ */
+
 var information = ThingStatus.find({}).fetch();
 
 // Database empty -> load initial data

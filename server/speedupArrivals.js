@@ -1,3 +1,8 @@
+/**
+ * Simulates updating of bus arrival times.
+ * Every bus will arrive one minute earlier each iteration so that we will se progress on the SWOT server.
+ * Swot server will be informed after each iteration.
+ */
 Meteor.setInterval(function() {
     var arrivals = Arrivals.find({}).fetch();
 
@@ -15,6 +20,7 @@ Meteor.setInterval(function() {
         }
     }
 
+    // tell the SWOT server that local information (arrival times) have changed
     emitInformationUpdated();
 
-}, 10000);
+}, 3000);
