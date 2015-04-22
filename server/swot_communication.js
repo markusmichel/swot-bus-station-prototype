@@ -16,5 +16,5 @@ emitInformationUpdated = function() {
         }
     };
 
-    HTTP.call("POST", "http://13.13.13.13/web/app_dev.php/api/v1/thing/information/update", options, function(res) {});
+    HTTP.call("POST", config.swot.api.updateInformation, options, function(res) {});
 };
