@@ -1,0 +1,24 @@
+<template name="arrivalList">
+    <h1>Bus Arrivals</h1>
+
+  {{#linkTo route="arrival.add" class="button"}}
+      new
+  {{/linkTo}}
+
+    <table id="arrival-list">
+        <thead>
+        <th>Line</th>
+        <th>arrival</th>
+        </thead>
+      {{#each arrivals}}
+          <tr>
+              <td>
+                {{#linkTo route="arrival.edit" data=this}}
+                  {{line}}
+                {{/linkTo}}
+              </td>
+              <td>{{arrivesAt}}</td>
+          </tr>
+      {{/each}}
+    </table>
+</template>
