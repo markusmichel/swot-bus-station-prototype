@@ -20,6 +20,21 @@ if (Meteor.isClient) {
     Template.arrivalList.helpers({
         arrivals: function() {
             return Arrivals.find({}, {sort: {arrivesAt: 1}});
+        },
+
+        isRegistered: function() {
+            var status = ThingStatus.findOne({});
+            if(!status) return "";
+            return status.device.registered === true ? "true" : "false";
+        }
+    });
+
+    Template.arrivalList.events({
+        "click #is-registered": function() {
+            console.log("update");
+            var status = ThingStatus.findOne({});
+            status.device.registered = !status.device.registered;
+            ThingStatus.update(status._id, status);
         }
     });
 
