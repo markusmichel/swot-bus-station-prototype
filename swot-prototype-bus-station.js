@@ -139,6 +139,7 @@ if (Meteor.isServer) {
         Router
             .route('/api/register', {where: 'server'})
             .get(function() {
+
                 var accessToken = this.request.query.access_token;
                 var networkToken = this.request.headers.networktoken;
 
