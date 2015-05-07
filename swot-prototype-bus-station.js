@@ -145,11 +145,11 @@ if (Meteor.isServer) {
                 var registerInfo = ThingStatus.findOne({});
 
                 if(registerInfo.device.registered === true) {
-                    this.response.statusCode = 500;
+                    this.response.statusCode = 423;
                     this.response.end("error: device is already registered");
 
                 } else if (registerToken !== accessToken) {
-                    this.response.statusCode = 500;
+                    this.response.statusCode = 401;
                     this.response.end("error: register token is invalid");
 
                 } else {
