@@ -88,7 +88,6 @@ if (Meteor.isServer) {
         Router
             .route('/api/information', {where: 'server'})
             .get(function() {
-                console.log("information called");
                 if(!hasOwnerAccess(this.request) && !hasReadAccess(this.request) && !hasWriteAccess(this.request)) {
                     createNotAuthed(this.response);
                 }
@@ -110,14 +109,21 @@ if (Meteor.isServer) {
 
                 var res = {
                     status: "success",
-                    information: {
-                        type: "table",
-                        value: {
-                            header: ["line", "arrives at"],
-                            data: arrivals
+                    information: [
+                        {
+                            type: "table",
+                            title: "next buses",
+                            value: {
+                                header: ["line", "arrives at"],
+                                data: []
+                            }
                         }
-                    }
+                    ]
                 };
+
+                for(var i in arrivals) {
+                    res.information[0].value.data.push([arrivals[i].line, arrivals[i].arrivesAt]);
+                }
 
                 this.response.setHeader("Content-Type", "application/json");
                 this.response.end(JSON.stringify(res));
